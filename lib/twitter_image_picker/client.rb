@@ -10,9 +10,9 @@ module TwitterImagePicker
       )
     end
 
-    def search(keyword)
+    def search(q)
       @client.search(
-        keyword,
+        q,
         count: 30,
         result_type: "recent",
         exclude: "retweets",
