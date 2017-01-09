@@ -2,8 +2,7 @@ require "twitter_image_picker/client"
 require "twitter_image_picker/storager"
 module TwitterImagePicker
   class Picker
-    def initialize(output_dir)
-      @storager = TwitterImagePicker::Storager.new(output_dir)
+    def initialize
       @client = TwitterImagePicker::Client.new
       @tweets = []
     end
@@ -13,9 +12,10 @@ module TwitterImagePicker
       @tweets = @client.search(q)
     end
 
-    def output
+    def output(output_dir)
+      storager = TwitterImagePicker::Storager.new(output_dir)
       image_urls.each do |image_url|
-        @storager.output(image_url)
+        storager.output(image_url)
       end
     end
 
